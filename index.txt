@@ -47,3 +47,26 @@ Add to Cart
 
 Your Cart (<!-- Quantity -->)
 Your added items will appear here
+
+
+
+
+
+
+
+
+/**
+ * 1. متنساش تعمل العلاقات في model و كمان تعمل ال middleware في route و تعمل group في route علشان يحط dashboard ورا كل صفحه في dashboard
+ *
+ * 2. هتعمل صفحات الي في layouts في web الاول بعد كدا في dashboard
+ *
+ * 3. بعد كدا تجهز الملفات بتاعت css and js
+ *
+ * 4. متنساش تعمل فكره انك تعمل ملف js لكل صفحه و تستدعيه بي @stack("scripts")
+ *
+ * 5. متنساش انك هتستخدم ايقونات svg من tabler
+ *
+ * 6. متنساش تستخدم ajax الي هيا اصلا fetch
+ *
+ * 7. هتعمل ال dashboard كامل الاول تمام 
+ */
