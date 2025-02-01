@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
 
-class NotBackMiddleware
+class NotBackAdminMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,7 @@ class NotBackMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::guard("web")->check()) return redirect()->back();
+        if (!Auth::guard("admin")->check()) return redirect()->back();
 
         return $next($request);
     }

@@ -16,7 +16,7 @@ class AuthCheckMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::guard("web")->check() && Auth::guard("admin")->check()) return redirect()->back();
+        if (Auth::guard("web")->check()) return redirect()->back();
 
         return $next($request);
     }

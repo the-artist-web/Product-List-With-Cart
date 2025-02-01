@@ -32,6 +32,5 @@ class LoginController extends Controller
                 "errors" => $e->errors()
             ]);
         };
-
     }
 }

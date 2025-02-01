@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 // MIDDLEWARE
 use App\Http\Middleware\AuthCheckMiddleware;
 use App\Http\Middleware\NotBackMiddleware;
+use App\Http\Middleware\AuthCheckAdminMiddleware;
+use App\Http\Middleware\NotBackAdminMiddleware;
 // AUTH USER
 use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\auth\LoginController;
@@ -38,14 +40,16 @@ Route::middleware([AuthCheckMiddleware::class])->group(function () {
 
     // AUTH USER LOGOUT
     // Route::post("/logout", [LogoutController::class, "logout"])->name("auth.logout");
-    
+});
+
+Route::middleware([AuthCheckAdminMiddleware::class])->group(function () {
     Route::prefix("/dashboard")->group(function () {
         // AUTH ADMIN LOGIN
         Route::get("/login", [LoginAdminController::class, "viewLogin"])->name("auth.admin.login");
-
+    
         // AUTH ADMIN LOGOUT
         // Route::post("/logout", [LogoutAdminController::class, "logout"])->name("auth.admin.logout");
-    });
+    });    
 });
 
 /*************************************************************************
@@ -76,7 +80,7 @@ Route::middleware([NotBackMiddleware::class])->group(function () {
  */
 
 Route::prefix("/dashboard")->group(function () {
-    Route::middleware([NotBackMiddleware::class])->group(function () {
+    Route::middleware([NotBackAdminMiddleware::class])->group(function () {
         // DASHBOARED
         Route::get("/", [DashboardController::class, "dashboard"])->name("dashboard");
         

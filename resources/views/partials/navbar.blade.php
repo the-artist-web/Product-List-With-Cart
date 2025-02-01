@@ -18,7 +18,7 @@
             <div class="d-flex align-items-center gap-3">
                 <div class="dropdown">
                     <button type="button" class="img-holder position-relative border border-2 border-color d-flex align-items-center justify-content-center h-45px max-h-45px w-45px max-w-45px rounded-pill" data-bs-toggle="dropdown">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22.5" height="22.5" viewBox="0 0 24 24" fill="none"
                             stroke="#8a8a8a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                             class="icon icon-tabler icons-tabler-outline icon-tabler-user">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -37,7 +37,7 @@
                     <ul class="dropdown-menu dropdown-menu-end py-10 px-0 m-0 w-300px bg-second-bg-color rounded-4 mt-10">
                         <li>
                             <a href="{{ route("page.profile", ["id" => Auth::guard("web")->id()]) }}" class="navbar-link position-relative d-flex align-items-center gap-3 py-10 px-20">
-                                <div class="img-holder bg-transparent border border-2 border-color d-flex align-items-center justify-content-center h-50px max-h-50px w-50px max-w-50px rounded-pill" data-bs-toggle="dropdown">
+                                <div class="img-holder bg-transparent border border-2 border-color d-flex align-items-center justify-content-center h-50px max-h-50px w-50px max-w-50px rounded-pill" data-bs-toggle="dropdown" style="min-width: 50px;">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none"
                                         stroke="#8a8a8a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                                         class="icon icon-tabler icons-tabler-outline icon-tabler-user">
@@ -55,8 +55,15 @@
                                 </div>
         
                                 <div class="text-start mt-4">
-                                    <p class="mb-2 text-truncate text-capitalize">mohamed-1234567</p>
-                                    <p class="text-second-color">July 21, 2005</p>
+                                    <p class="mb-2 text-truncate text-capitalize">
+                                        @if (Auth::user()->username)
+                                            {{ Auth::user()->username }}
+                                        @else
+                                            {{ Auth::user()->name }}-{{ Auth::user()->created_at->format('njyHis') }}
+                                        @endif
+                                    </p>
+
+                                    <p class="text-second-color">{{ Auth::user()->created_at->format('F j, Y') }}</p>
                                 </div>
                             </a>
                         </li>
