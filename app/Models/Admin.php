@@ -14,4 +14,9 @@ class Admin extends Authenticatable
         "bio",
         "role"
     ];
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }

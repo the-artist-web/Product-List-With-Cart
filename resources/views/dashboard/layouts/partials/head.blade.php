@@ -29,6 +29,8 @@
 <meta property="og:title" content="Tabler: Premium and Open Source dashboard template with responsive and high quality UI.">
 <meta property="og:url" content="https://tabler.io/demo/static/og.png">
 <meta property="og:description" content="Tabler comes with tons of well-designed components and features. Start your adventure with Tabler and make your dashboard great again. For free!">
+{{-- csrf token --}}
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <!-- CSS files -->
 <link href="{{ asset("/dist/css/tabler.min.css?1737581035") }}" rel="stylesheet"/>
 <link href="{{ asset("/dist/css/tabler-flags.min.css?1737581035") }}" rel="stylesheet"/>

@@ -7,5 +7,8 @@ use Illuminate\Http\Request;
 
 class ShoppingCardController extends Controller
 {
-    //
+    public function shoppingCard()
+    {
+        return view("pages.shopping-card");
+    }
 }

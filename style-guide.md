@@ -13,6 +13,7 @@ The designs were created to the following widths:
 
 --orange-color: #eb9a99;
 --blue-color: #acdffe;
+--error-color: #ff6363;
 
 ### Neutral
 
@@ -73,5 +74,4 @@ For the icons in the design, you can choose between using the icons provided or 
 Some library suggestions can be found below:
 
 - [Font Awesome](https://fontawesome.com)
-- [IcoMoon](https://icomoon.io)
-- [Ionicons](https://ionicons.com)
+- [IcoTabler](https://tabler.io/icons)
