@@ -11,6 +11,7 @@
             </article>
         </main>
         @include("partials.footer")
+        @include("partials.status")
         @include("layouts.partials.scripts")
     </body>
 </html>

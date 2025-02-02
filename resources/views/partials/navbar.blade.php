@@ -1,4 +1,4 @@
-<nav class="navbar position-fixed top-0 left-0 right-0 z-3 bg-bg w-100 h-65px">
+<nav class="navbar position-fixed top-0 left-0 right-0 z-3 bg-bg-color w-100 h-65px">
     <div class="container d-flex align-items-center justify-content-between gap-3">
         <a href="{{ route("index") }}" class="d-flex align-items-center gap-1 title-small">
             <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none"
@@ -18,44 +18,48 @@
             <div class="d-flex align-items-center gap-3">
                 <div class="dropdown">
                     <button type="button" class="img-holder position-relative border border-2 border-color d-flex align-items-center justify-content-center h-45px max-h-45px w-45px max-w-45px rounded-pill" data-bs-toggle="dropdown">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="22.5" height="22.5" viewBox="0 0 24 24" fill="none"
-                            stroke="#8a8a8a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="icon icon-tabler icons-tabler-outline icon-tabler-user">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
-                            <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
-                        </svg>
-        
-                        {{-- <img 
-                            src="" 
-                            alt=""
-                            loading="lazy"
-                            class="img-cover position-absolute top-0 left-0 right-0 bottom-0 rounded-pill"
-                        /> --}}
+                        @if (Auth::user()->profile_photo)
+                            <img 
+                                src="" 
+                                alt="{{ Auth::user()->name }}"
+                                loading="lazy"
+                                class="img-cover position-absolute top-0 left-0 right-0 bottom-0 rounded-pill"
+                            />
+                        @else
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22.5" height="22.5" viewBox="0 0 24 24" fill="none"
+                                stroke="#8a8a8a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                class="icon icon-tabler icons-tabler-outline icon-tabler-user">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+                                <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                            </svg>
+                        @endif
                     </button>
         
-                    <ul class="dropdown-menu dropdown-menu-end py-10 px-0 m-0 w-300px bg-second-bg-color rounded-4 mt-10">
+                    <ul class="dropdown-menu dropdown-menu-end py-10 px-0 m-0 w-300px bg-second-bg-color rounded-4 mt-5">
                         <li>
-                            <a href="{{ route("page.profile", ["id" => Auth::guard("web")->id()]) }}" class="navbar-link position-relative d-flex align-items-center gap-3 py-10 px-20">
-                                <div class="img-holder bg-transparent border border-2 border-color d-flex align-items-center justify-content-center h-50px max-h-50px w-50px max-w-50px rounded-pill" data-bs-toggle="dropdown" style="min-width: 50px;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none"
-                                        stroke="#8a8a8a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                        class="icon icon-tabler icons-tabler-outline icon-tabler-user">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                        <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
-                                        <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
-                                    </svg>
-                    
-                                    {{-- <img 
-                                        src="" 
-                                        alt=""
-                                        loading="lazy"
-                                        class="img-cover position-absolute top-0 left-0 right-0 bottom-0 rounded-pill"
-                                    /> --}}
+                            <a href="{{ route("page.profile", ["id" => Auth::guard("web")->id()]) }}" class="navbar-link d-flex align-items-center gap-3 py-10 px-20">
+                                <div class="img-holder position-relative bg-transparent border border-2 border-color d-flex align-items-center justify-content-center h-50px max-h-50px w-50px max-w-50px rounded-pill" data-bs-toggle="dropdown" style="min-width: 50px;">
+                                    @if (Auth::user()->profile_photo)
+                                        <img 
+                                            src="" 
+                                            alt="{{ Auth::user()->name }}"
+                                            loading="lazy"
+                                            class="img-cover position-absolute top-0 left-0 right-0 bottom-0 rounded-pill"
+                                        />
+                                    @else
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="22.5" height="22.5" viewBox="0 0 24 24" fill="none"
+                                            stroke="#8a8a8a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="icon icon-tabler icons-tabler-outline icon-tabler-user">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+                                            <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                                        </svg>
+                                    @endif
                                 </div>
         
                                 <div class="text-start mt-4">
-                                    <p class="mb-2 text-truncate text-capitalize">
+                                    <p class="text-truncate text-capitalize">
                                         @if (Auth::user()->username)
                                             {{ Auth::user()->username }}
                                         @else
@@ -106,6 +110,8 @@
 
                         <li>
                             <form class="w-100" data-form-logout>
+                                @csrf
+
                                 <button type="submit" class="navbar-link w-100 py-10 px-20 d-flex align-items-center gap-2 text-capitalize text-second-color label-small">
                                     <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="#eb9a99"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-logout"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" /><path d="M9 12h12l-3 -3" /><path d="M18 15l3 -3" /></svg>
 
@@ -128,6 +134,30 @@
 
 @push("scripts")
     <script>
-        
+        document.querySelector("[data-form-logout]").addEventListener("submit", async function (e) {
+            e.preventDefault();
+
+            let formData = new FormData(this);
+
+            let response = await fetch("{{ route('auth.logout') }}", {
+                method: "POST",
+                headers: {
+                    "X-CSRF-TOKEN": document.querySelector("meta[name='csrf-token']").getAttribute("content"),
+                },
+                body: formData
+            });
+
+            let data = await response.json();
+
+            if (data.success === true) {
+                document.querySelector("[data-status]").innerHTML = `<div class="alert alert-danger m-0 ${ data.status } border-0 rounded-4 label-small max-w-500px w-full">${ data.message }</div>`;
+
+                setTimeout(() => {
+                    window.location.href = "{{ route('auth.login') }}";
+                }, 500);
+            } else {
+                document.querySelector("[data-status]").innerHTML = `<div class="alert alert-danger m-0 ${ data.status } border-0 rounded-4 label-small max-w-500px w-full">${ data.errors }</div>`;
+            };
+        });
     </script>
 @endpush

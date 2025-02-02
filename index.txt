@@ -56,5 +56,5 @@ Your added items will appear here
 
 
 /**
- * اولا ارجع اعمل ملفات js و امشي عادي ثانيا اعمل 2 middleware لل admin لوحده و اعرض بيانات ال user في dropmenu و ابقا كمل الموقع ان شاء الله كا تصميم
+ * اولا ارجع اعمل ملفات js
  */

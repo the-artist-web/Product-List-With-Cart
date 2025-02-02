@@ -15,6 +15,7 @@ use App\Http\Controllers\dashboard\auth\LoginController as LoginAdminController;
 use App\Http\Controllers\dashboard\auth\LogoutController as LogoutAdminController;
 // WEB
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\pages\ProductDetailController;
 use App\Http\Controllers\pages\CheckoutController;
 use App\Http\Controllers\pages\ProfileController;
 use App\Http\Controllers\pages\SettingsController;
@@ -37,10 +38,10 @@ Route::middleware([AuthCheckMiddleware::class])->group(function () {
     // AUTH USER LOGIN
     Route::get("/login", [LoginController::class, "viewLogin"])->name("auth.login");
     Route::post("/login", [LoginController::class, "loginStore"])->name("auth.login.post");
-
-    // AUTH USER LOGOUT
-    // Route::post("/logout", [LogoutController::class, "logout"])->name("auth.logout");
 });
+
+// AUTH USER LOGOUT
+Route::post("/logout", [LogoutController::class, "logout"])->name("auth.logout");
 
 Route::middleware([AuthCheckAdminMiddleware::class])->group(function () {
     Route::prefix("/dashboard")->group(function () {
@@ -59,6 +60,9 @@ Route::middleware([AuthCheckAdminMiddleware::class])->group(function () {
 
 // INDEX
 Route::get("/", [IndexController::class, "index"])->name("index");
+
+// PRODUCT DETAILS
+Route::get("/product/{id}", [ProductDetailController::class, "productDetail"])->name("page.product.details");
 
 Route::middleware([NotBackMiddleware::class])->group(function () {
     // PROFILE

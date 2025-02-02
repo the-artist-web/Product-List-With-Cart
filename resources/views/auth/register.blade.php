@@ -5,6 +5,8 @@
 @section("body")
     <div class="container d-flex align-items-center justify-content-center" style="height: 100vh;">
         <form class="bg-second-bg-color w-100 max-w-460px p-25 rounded-4" data-form-register data-aos="fade-up" data-aos-duration="2000">
+            @csrf
+
             <a href="{{ route("index") }}" class="d-flex align-items-center justify-content-center gap-1 mb-10 title-medium">
                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
                     stroke="#eb9a99" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -101,7 +103,7 @@
 
             let formData = new FormData(this);
 
-            let response = await fetch("/register", {
+            let response = await fetch("{{ route('auth.register.post') }}", {
                 method: "POST",
                 headers: {
                     "X-CSRF-TOKEN": document.querySelector("meta[name='csrf-token']").getAttribute("content"),

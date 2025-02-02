@@ -30,7 +30,7 @@
     --fs-base: 62.5%;
     --fs-display-large: 2.8rem;
     --fs-display-medium: 3.2rem;
-    --fs-display-small: 2.6rem;
+    --fs-display-small: 2rem;
     --fs-headline-small: 2.4rem;
     --fs-title-medium: 1.6rem;
     --fs-title-small: 1.4rem;
@@ -151,7 +151,7 @@ body {
     font-weight: normal;
     display: flex;
     flex-direction: column;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
 }
 
 h1,
@@ -212,6 +212,8 @@ p {
     border-radius: var(--radius-12);
     overflow: hidden;
 }
+
+.title-section { margin-block-end: 30px; }
 
 .main {
     min-height: calc(100vh - 60px);
@@ -338,6 +340,12 @@ p {
 
 .second-border-color { border-color: var(--second-border-color) !important; }
 
+.border-orange-color { border-color: var(--orange-color) !important; }
+
+.border-blue-color { border-color: var(--blue-color) !important; }
+
+.border-error-color { border-color: var(--error-color) !important; }
+
 /* ------------------------------------------------------- *\
  * COMPONENTS
 \* ------------------------------------------------------- */
@@ -381,6 +389,12 @@ p {
     justify-content: center;
     gap: 10px;
     border: 0;
+    transition: 0.4s !important;
+}
+
+.btn:hover {
+    opacity: 0.8;
+    transition: 0.4s !important;
 }
 
 .btn-primary {
@@ -419,18 +433,62 @@ p {
     transition: 0.4s !important;
 }
 
+.btn-third {
+    background-color: var(--text-color) !important;
+    color: var(--bg-color) !important;
+    transition: 0.4s !important;
+}
+
+.btn-third:hover {
+    opacity: 0.8;
+    transition: 0.4s !important;
+}
+
+.btn-fourth {
+    background-color: var(--blue-color) !important;
+    color: var(--bg-color) !important;
+    transition: 0.4s !important;
+}
+
+.btn-fourth:hover {
+    opacity: 0.8;
+    transition: 0.4s !important;
+}
+
 /**
  * CARDS
  */
-  
+.card {
+    background: transparent;
+    color: var(--text-color);
+    border-radius: 0;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
 
+/**
+ * table
+ */
+.table>:not(caption)>*>* {
+    padding: 10px 20px;
+    color: var(--text-color);
+    background-color: transparent;
+    border-bottom-width: 2px !important;
+    border-color: var(--border-color);
+    vertical-align: middle;
+}
 
-
-
-
-
-
-
+/**
+ * truncate
+ */
+.truncate-line-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
 /**
  * SCROLL NONE
