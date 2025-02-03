@@ -4,6 +4,9 @@ namespace App\Http\Controllers\dashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
+use App\Models\Admin;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -12,7 +15,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        return view("dasboard.admins.create");
+        return view("dashboard.admins.create");
     }
 
     /**
@@ -20,15 +23,31 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        try {
+            $request->validate([
+                "name" => "required|string|min:2|max:100",
+                "email" => "required|email|unique:admins,email",
+                "password" => "required|string|min:8|max:30|confirmed",
+                "role" => "required|string|in:super_admin,admin"
+            ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+            Admin::create([
+                "name" => $request->name,
+                "email" => $request->email,
+                "password" => Hash::make($request->password),
+                "role" => $request->role,
+            ]);
+
+            return response()->json([
+                "success" => true,
+                "message" => "Administrator added successfully"
+            ]);
+        } catch (ValidationException $e) {
+            return response()->json([
+                "success" => false,
+                "errors" => $e->errors()
+            ]);
+        };
     }
 
     /**
@@ -36,7 +55,9 @@ class AdminController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $admin = Admin::findOrFail($id);
+
+        return view("dashboard.admins.edit", compact("admin"));
     }
 
     /**
@@ -52,6 +73,13 @@ class AdminController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $admin = Admin::findOrFail($id);
+
+        $admin->delete();
+
+        return response()->json([
+            "success" => true,
+            "message" => "Admin deleted successfully"
+        ]);
     }
 }

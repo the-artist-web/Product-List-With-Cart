@@ -6,6 +6,7 @@ use App\Http\Middleware\AuthCheckMiddleware;
 use App\Http\Middleware\NotBackMiddleware;
 use App\Http\Middleware\AuthCheckAdminMiddleware;
 use App\Http\Middleware\NotBackAdminMiddleware;
+use App\Http\Middleware\AuthRoleMiddleware;
 // AUTH USER
 use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\auth\LoginController;
@@ -30,6 +31,9 @@ use App\Http\Controllers\dashboard\ProductsController;
  *************************************************************************
  */
 
+/**
+ * USER
+ */
 Route::middleware([AuthCheckMiddleware::class])->group(function () {
     // AUTH USER REGISTER
     Route::get("/register", [RegisterController::class, "viewRegister"])->name("auth.register");
@@ -43,15 +47,19 @@ Route::middleware([AuthCheckMiddleware::class])->group(function () {
 // AUTH USER LOGOUT
 Route::post("/logout", [LogoutController::class, "logout"])->name("auth.logout");
 
+/**
+ * ADMIN
+ */
 Route::middleware([AuthCheckAdminMiddleware::class])->group(function () {
     Route::prefix("/dashboard")->group(function () {
         // AUTH ADMIN LOGIN
         Route::get("/login", [LoginAdminController::class, "viewLogin"])->name("auth.admin.login");
-    
-        // AUTH ADMIN LOGOUT
-        // Route::post("/logout", [LogoutAdminController::class, "logout"])->name("auth.admin.logout");
-    });    
+        Route::post("/login", [LoginAdminController::class, "login"])->name("auth.admin.login.post");
+    });
 });
+
+// AUTH ADMIN LOGOUT
+Route::post("/logout", [LogoutAdminController::class, "logout"])->name("auth.admin.logout");
 
 /*************************************************************************
  * WEB
@@ -89,9 +97,17 @@ Route::prefix("/dashboard")->group(function () {
         Route::get("/", [DashboardController::class, "dashboard"])->name("dashboard");
         
         // ADMINS
-        Route::get("/admin/create", [AdminController::class, "create"])->name("dashboard.admin");
+        Route::get("/admin/create", [AdminController::class, "create"])->name("create.admin");
+        Route::post("/admin/store", [AdminController::class, "store"])->name("admin.store");
+
+        // MIDDLEWARE ADMIN ROLE
+        Route::middleware([AuthRoleMiddleware::class])->group(function () {
+            Route::get("/admin/{id}/edit", [AdminController::class, "edit"])->name("admin.edit");
+            Route::put("/admin/{id}", [AdminController::class, "update"])->name("admin.update");
+            Route::delete("/destroy/{id}", [AdminController::class, "destroy"])->name("admin.destroy");
+        });
         
         // PRODUCTS
-        Route::get("/product/create", [ProductsController::class, "create"])->name("dashboard.product");
+        Route::get("/product/create", [ProductsController::class, "create"])->name("create.product");
     });
 });

@@ -66,10 +66,10 @@
 
 @push("scripts")
     <script>
-        document.querySelector("[data-form-login]").addEventListener("submit", async function (e) {
+        document.querySelector("[data-form-login]").addEventListener("submit", async (e) => {
             e.preventDefault();
 
-            let formData = new FormData(this);
+            let formData = new FormData(e.target);
 
             let response = await fetch("{{ route('auth.login.post') }}", {
                 method: "POST",

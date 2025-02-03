@@ -12,7 +12,7 @@
                     edit profile
                 </a>
 
-                <div class="img-holder position-relative border border-2 border-color d-flex align-items-center justify-content-center h-160px max-h-160px w-160px max-w-160px rounded-pill" data-bs-toggle="dropdown">
+                <div class="img-holder position-relative border border-2 border-color d-flex align-items-center justify-content-center h-160px max-h-160px w-160px max-w-160px rounded-pill">
                     @if (Auth::user()->profile_photo)
                         <img 
                             src="" 
@@ -94,14 +94,14 @@
                             </td>
 
                             <td>
-                                <div class="w-165px bg-third-bg-color d-flex align-items-center gap-0 h-55px rounded-3 border border-2 border-color">
-                                    <button class="btn p-0 w-55px d-flex align-items-center justify-content-center">
+                                <div class="w-165px d-flex align-items-center gap-0 h-50px rounded-3">
+                                    <button class="btn p-0 d-flex align-items-center justify-content-center w-50px h-50px bg-third-bg-color border border-2 border-color rounded-pill">
                                         <svg  xmlns="http://www.w3.org/2000/svg"  width="25.5"  height="25.5"  viewBox="0 0 24 24"  fill="none"  stroke="#eb9a99"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-minus"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l14 0" /></svg>
                                     </button>
                                     
-                                    <span class="p-0 w-55px d-flex align-items-center justify-content-center border border-2 border-color border-top-0 border-bottom-0 label-medium">1</span>
+                                    <span class="p-0 w-50px d-flex align-items-center justify-content-center label-medium">1</span>
                                     
-                                    <button class="btn p-0 w-55px d-flex align-items-center justify-content-center">
+                                    <button class="btn p-0 d-flex align-items-center justify-content-center w-50px h-50px bg-third-bg-color border border-2 border-color rounded-pill">
                                         <svg  xmlns="http://www.w3.org/2000/svg"  width="25.5"  height="25.5"  viewBox="0 0 24 24"  fill="none"  stroke="#eb9a99"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-plus"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg>
                                     </button>
                                 </div>
@@ -141,14 +141,14 @@
                             </td>
 
                             <td>
-                                <div class="w-165px bg-third-bg-color d-flex align-items-center gap-0 h-55px rounded-3 border border-2 border-color">
-                                    <button class="btn p-0 w-55px d-flex align-items-center justify-content-center">
+                                <div class="w-165px d-flex align-items-center gap-0 h-50px rounded-3">
+                                    <button class="btn p-0 d-flex align-items-center justify-content-center w-50px h-50px bg-third-bg-color border border-2 border-color rounded-pill">
                                         <svg  xmlns="http://www.w3.org/2000/svg"  width="25.5"  height="25.5"  viewBox="0 0 24 24"  fill="none"  stroke="#eb9a99"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-minus"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l14 0" /></svg>
                                     </button>
                                     
-                                    <span class="p-0 w-55px d-flex align-items-center justify-content-center border border-2 border-color border-top-0 border-bottom-0 label-medium">1</span>
+                                    <span class="p-0 w-50px d-flex align-items-center justify-content-center label-medium">1</span>
                                     
-                                    <button class="btn p-0 w-55px d-flex align-items-center justify-content-center">
+                                    <button class="btn p-0 d-flex align-items-center justify-content-center w-50px h-50px bg-third-bg-color border border-2 border-color rounded-pill">
                                         <svg  xmlns="http://www.w3.org/2000/svg"  width="25.5"  height="25.5"  viewBox="0 0 24 24"  fill="none"  stroke="#eb9a99"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-plus"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg>
                                     </button>
                                 </div>

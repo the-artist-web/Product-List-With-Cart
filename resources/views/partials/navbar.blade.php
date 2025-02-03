@@ -1,5 +1,5 @@
 <nav class="navbar position-fixed top-0 left-0 right-0 z-3 bg-bg-color w-100 h-65px">
-    <div class="container d-flex align-items-center justify-content-between gap-3">
+    <div class="container-xxl d-flex align-items-center justify-content-between gap-3">
         <a href="{{ route("index") }}" class="d-flex align-items-center gap-1 title-small">
             <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none"
                 stroke="#eb9a99" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -39,7 +39,7 @@
                     <ul class="dropdown-menu dropdown-menu-end py-10 px-0 m-0 w-300px bg-second-bg-color rounded-4 mt-5">
                         <li>
                             <a href="{{ route("page.profile", ["id" => Auth::guard("web")->id()]) }}" class="navbar-link d-flex align-items-center gap-3 py-10 px-20">
-                                <div class="img-holder position-relative bg-transparent border border-2 border-color d-flex align-items-center justify-content-center h-50px max-h-50px w-50px max-w-50px rounded-pill" data-bs-toggle="dropdown" style="min-width: 50px;">
+                                <div class="img-holder position-relative bg-transparent border border-2 border-color d-flex align-items-center justify-content-center h-50px max-h-50px w-50px max-w-50px rounded-pill" style="min-width: 50px;">
                                     @if (Auth::user()->profile_photo)
                                         <img 
                                             src="" 
@@ -134,12 +134,12 @@
 
 @push("scripts")
     <script>
-        document.querySelector("[data-form-logout]").addEventListener("submit", async function (e) {
+        document.querySelector("[data-form-logout]").addEventListener("submit", async (e) => {
             e.preventDefault();
 
-            let formData = new FormData(this);
+            let formData = new FormData(e.target);
 
-            let response = await fetch("{{ route('auth.logout') }}", {
+            let response = await fetch("/logout", {
                 method: "POST",
                 headers: {
                     "X-CSRF-TOKEN": document.querySelector("meta[name='csrf-token']").getAttribute("content"),

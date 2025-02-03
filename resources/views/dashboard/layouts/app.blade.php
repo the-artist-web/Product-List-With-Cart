@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" dir="rtl">
+<html lang="en">
     <head>
         @include('dashboard.layouts.partials.head')
     </head>
@@ -12,7 +12,6 @@
                 <div class="page-body">
                     <div class="container-xl">
                         @yield("body")
-                        @include('dashboard.errors.errors')
                     </div>
                 </div>
                 @include("dashboard.partials.footer")
