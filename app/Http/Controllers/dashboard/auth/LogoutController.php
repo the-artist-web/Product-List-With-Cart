@@ -11,15 +11,11 @@ class LogoutController extends Controller
 {
     public function logout(Request $request)
     {
-        try {
-            Auth::guard("admin")->logout();
+        Auth::guard("admin")->logout();
 
-            $request->session()->invalidate();
-            $request->session()->regenerateToken();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
-            return response()->json(["success" => true]);
-        } catch (ValidationException $e) {
-            return response()->json(["success" => false]);
-        }
+        return redirect()->route("auth.admin.login");
     }
 }

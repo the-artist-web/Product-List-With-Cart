@@ -16,20 +16,15 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        try {
-            $request->validate([
-                "email" => "required|email",
-                "password" => "required|string|min:8|max:30"
-            ]);
+        $request->validate([
+            "email" => "required|email",
+            "password" => "required|string|min:8|max:30"
+        ]);
 
-            if (Auth::guard("admin")->attempt(["email" => $request->email, "password" => $request->password])) {
-                return response()->json(["success" => true,]);
-            };
-        } catch (ValidationException $e) {
-            return response()->json([
-                "success" => false,
-                "errors" => $e->errors()
-            ]);
+        if (Auth::guard("admin")->attempt(["email" => $request->email, "password" => $request->password])) {
+            return redirect()->route("dashboard");
         };
+
+        return redirect()->back();
     }
 }

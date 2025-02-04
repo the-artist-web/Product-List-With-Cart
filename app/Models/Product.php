@@ -22,11 +22,11 @@ class Product extends Model
 
     public function orders()
     {
-        return $this->belongsToMany(Order::class, "mediator_product_order")->withPivot("count", "total");
+        return $this->belongsToMany(Order::class, "mediator_product_orders")->withPivot("count", "total");
     }
 
     public function imageProducts()
     {
-        return $this->belongsToMany(ImageProduct::class, "mediator_product_image");
+        return $this->belongsToMany(ImageProduct::class, "mediator_product_images");
     }
 }

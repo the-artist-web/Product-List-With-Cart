@@ -16,7 +16,7 @@ class NotBackAdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::guard("admin")->check()) return redirect()->back();
+        if (!Auth::guard("admin")->check()) return redirect()->route("auth.admin.login");
 
         return $next($request);
     }

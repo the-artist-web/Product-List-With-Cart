@@ -16,21 +16,16 @@ class LoginController extends Controller
 
     public function loginStore(Request $request)
     {
-        try {
-            $request->validate([
-                "email" => "required|email",
-                "password" => "required|string|min:8|max:30"
-            ]);
-    
-            if (Auth::guard("web")->attempt(["email" => $request->email, "password" => $request->password])) {
-                session()->regenerate();
-                return response()->json(["success" => true]);
-            };
-        } catch (ValidationException $e) {
-            return response()->json([
-                "success" => false,
-                "errors" => $e->errors()
-            ]);
+        $request->validate([
+            "email" => "required|email",
+            "password" => "required|string|min:8|max:30"
+        ]);
+
+        if (Auth::guard("web")->attempt(["email" => $request->email, "password" => $request->password])) {
+            session()->regenerate();
+            return redirect()->route("index");
         };
+
+        return redirect()->back();
     }
 }

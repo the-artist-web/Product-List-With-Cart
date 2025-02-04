@@ -56,6 +56,7 @@
                                                 alt="" 
                                                 loading="lazy"
                                                 class="rounded-4 border border-2 border-color img-cover" 
+                                                style="cursor: pointer;"
                                                 data-bs-target="#product-details" 
                                                 data-bs-slide-to="0"
                                             />
@@ -67,6 +68,7 @@
                                                 alt="" 
                                                 loading="lazy"
                                                 class="rounded-4 border border-2 border-color img-cover" 
+                                                style="cursor: pointer;"
                                                 data-bs-target="#product-details" 
                                                 data-bs-slide-to="1"
                                             />
@@ -78,6 +80,7 @@
                                                 alt="" 
                                                 loading="lazy"
                                                 class="rounded-4 border border-2 border-color img-cover" 
+                                                style="cursor: pointer;"
                                                 data-bs-target="#product-details" 
                                                 data-bs-slide-to="2"
                                             />
@@ -89,6 +92,7 @@
                                                 alt="" 
                                                 loading="lazy"
                                                 class="rounded-4 border border-3 border-orange-color img-cover" 
+                                                style="cursor: pointer;"
                                                 data-bs-target="#product-details" 
                                                 data-bs-slide-to="3"
                                             />

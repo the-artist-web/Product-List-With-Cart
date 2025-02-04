@@ -4,7 +4,6 @@ namespace App\Http\Controllers\dashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Validation\ValidationException;
 use App\Models\Admin;
 use Illuminate\Support\Facades\Hash;
 
@@ -23,31 +22,23 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        try {
-            $request->validate([
-                "name" => "required|string|min:2|max:100",
-                "email" => "required|email|unique:admins,email",
-                "password" => "required|string|min:8|max:30|confirmed",
-                "role" => "required|string|in:super_admin,admin"
-            ]);
+        $request->validate([
+            "name" => "required|string|min:2|max:100",
+            "email" => "required|email|unique:admins,email",
+            "bio" => "required|string|min:2|max:200",
+            "password" => "required|string|min:8|max:30|confirmed",
+            "role" => "required|string|in:super_admin,admin"
+        ]);
 
-            Admin::create([
-                "name" => $request->name,
-                "email" => $request->email,
-                "password" => Hash::make($request->password),
-                "role" => $request->role,
-            ]);
+        Admin::create([
+            "name" => $request->name,
+            "email" => $request->email,
+            "bio" => $request->bio,
+            "password" => Hash::make($request->password),
+            "role" => $request->role,
+        ]);
 
-            return response()->json([
-                "success" => true,
-                "message" => "Administrator added successfully"
-            ]);
-        } catch (ValidationException $e) {
-            return response()->json([
-                "success" => false,
-                "errors" => $e->errors()
-            ]);
-        };
+        return redirect()->route("dashboard");
     }
 
     /**
@@ -65,7 +56,28 @@ class AdminController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            "name" => "required|string|min:2|max:100",
+            "email" => "required|email|unique:admins,email," . $id,
+            "bio" => "required|string|min:2|max:200",
+            "old_password" => "nullable|string|min:8|max:30",
+            "new_password" => "nullable|string|min:8|max:30|confirmed",
+            "role" => "required|string|in:super_admin,admin"
+        ]);
+
+        $admin = Admin::findOrFail($id);
+
+        if ($request->old_password && !Hash::check($request->old_password, $admin->password)) return back()->withErrors(["The old password is incorrect."]);
+
+        $admin->update([
+            "name" => $request->name,
+            "email" => $request->email,
+            "bio" => $request->bio,
+            "password" => Hash::make($request->new_password),
+            "role" => $request->role
+        ]);
+
+        return redirect()->route("dashboard");
     }
 
     /**
@@ -77,9 +89,6 @@ class AdminController extends Controller
 
         $admin->delete();
 
-        return response()->json([
-            "success" => true,
-            "message" => "Admin deleted successfully"
-        ]);
+        return redirect()->back();
     }
 }

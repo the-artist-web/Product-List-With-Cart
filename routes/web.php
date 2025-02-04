@@ -6,7 +6,6 @@ use App\Http\Middleware\AuthCheckMiddleware;
 use App\Http\Middleware\NotBackMiddleware;
 use App\Http\Middleware\AuthCheckAdminMiddleware;
 use App\Http\Middleware\NotBackAdminMiddleware;
-use App\Http\Middleware\AuthRoleMiddleware;
 // AUTH USER
 use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\auth\LoginController;
@@ -21,6 +20,8 @@ use App\Http\Controllers\pages\CheckoutController;
 use App\Http\Controllers\pages\ProfileController;
 use App\Http\Controllers\pages\SettingsController;
 use App\Http\Controllers\pages\ShoppingCardController;
+// ORDERS
+use App\Http\Controllers\OrdersController;
 // DASHBOARD
 use App\Http\Controllers\dashboard\DashboardController;
 use App\Http\Controllers\dashboard\AdminController;
@@ -59,7 +60,7 @@ Route::middleware([AuthCheckAdminMiddleware::class])->group(function () {
 });
 
 // AUTH ADMIN LOGOUT
-Route::post("/logout", [LogoutAdminController::class, "logout"])->name("auth.admin.logout");
+Route::post("/admin/logout", [LogoutAdminController::class, "logout"])->name("auth.admin.logout");
 
 /*************************************************************************
  * WEB
@@ -87,6 +88,14 @@ Route::middleware([NotBackMiddleware::class])->group(function () {
 });
 
 /*************************************************************************
+ * ORDERS
+ *************************************************************************
+ */
+
+Route::post("/store/order/{id}", [OrdersController::class, "orderStore"])->name("order.store");
+Route::delete("/destroy/order/{id}", [OrdersController::class, "orderDestroy"])->name("order.destroy");
+
+/*************************************************************************
  * DASHBOARD
  *************************************************************************
  */
@@ -99,15 +108,15 @@ Route::prefix("/dashboard")->group(function () {
         // ADMINS
         Route::get("/admin/create", [AdminController::class, "create"])->name("create.admin");
         Route::post("/admin/store", [AdminController::class, "store"])->name("admin.store");
-
-        // MIDDLEWARE ADMIN ROLE
-        Route::middleware([AuthRoleMiddleware::class])->group(function () {
-            Route::get("/admin/{id}/edit", [AdminController::class, "edit"])->name("admin.edit");
-            Route::put("/admin/{id}", [AdminController::class, "update"])->name("admin.update");
-            Route::delete("/destroy/{id}", [AdminController::class, "destroy"])->name("admin.destroy");
-        });
+        Route::get("/admin/{id}/edit", [AdminController::class, "edit"])->name("admin.edit");
+        Route::put("/admin/update/{id}", [AdminController::class, "update"])->name("admin.update");
+        Route::delete("/admin/destroy/{id}", [AdminController::class, "destroy"])->name("admin.destroy");
         
         // PRODUCTS
-        Route::get("/product/create", [ProductsController::class, "create"])->name("create.product");
+        Route::get("/product/create", [ProductsController::class, "create"])->name("product.create");
+        Route::post("/product/store", [ProductsController::class, "store"])->name("product.store");
+        Route::get("/product/{id}/edit", [ProductsController::class, "edit"])->name("product.edit");
+        Route::put("/product/update/{id}", [ProductsController::class, "update"])->name("product.update");
+        Route::delete("/product/destroy/{id}", [ProductsController::class, "destroy"])->name("product.destroy");
     });
 });

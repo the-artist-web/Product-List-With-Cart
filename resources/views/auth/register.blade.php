@@ -4,7 +4,7 @@
 
 @section("body")
     <div class="container d-flex align-items-center justify-content-center" style="height: 100vh;">
-        <form class="bg-second-bg-color w-100 max-w-460px p-25 rounded-4" data-form-register data-aos="fade-up" data-aos-duration="2000">
+        <form action="{{ route('auth.register.post') }}" method="POST" class="bg-second-bg-color w-100 max-w-460px p-25 rounded-4" data-aos="fade-up" data-aos-duration="2000">
             @csrf
 
             <a href="{{ route("index") }}" class="d-flex align-items-center justify-content-center gap-1 mb-10 title-medium">
@@ -95,38 +95,3 @@
         </form>
     </div>
 @endsection
-
-@push("scripts")
-    <script>
-        document.querySelector("[data-form-register]").addEventListener("submit", async (e) => {
-            e.preventDefault();
-
-            let formData = new FormData(e.target);
-
-            let response = await fetch("{{ route('auth.register.post') }}", {
-                method: "POST",
-                headers: {
-                    "X-CSRF-TOKEN": document.querySelector("meta[name='csrf-token']").getAttribute("content"),
-                },
-                body: formData
-            });
-
-            let data = await response.json();
-
-            document.querySelectorAll("[data-error]").forEach((ele) => ele.innerHTML = "" );
-
-            if (data.success === true) {
-                window.location.href = "{{ route('index') }}";
-            } else {
-                if (data.errors.name) document.querySelector("[data-error-name]").innerHTML = data.errors.name[0];
-
-                if (data.errors.email) document.querySelector("[data-error-email]").innerHTML = data.errors.email[0];
-
-                if (data.errors.password) { 
-                    document.querySelector("[data-error-password]").innerHTML = data.errors.password[0]; 
-                    document.querySelector("[data-error-confirm-password]").innerHTML = data.errors.password[0];
-                };
-            };
-        });
-    </script>
-@endpush

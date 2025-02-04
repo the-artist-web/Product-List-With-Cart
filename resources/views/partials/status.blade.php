@@ -1,1 +1,0 @@
-<div class="position-absolute d-grid gap-2" style="right: 20px; bottom: 20px;" data-status></div>

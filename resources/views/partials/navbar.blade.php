@@ -48,7 +48,7 @@
                                             class="img-cover position-absolute top-0 left-0 right-0 bottom-0 rounded-pill"
                                         />
                                     @else
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="22.5" height="22.5" viewBox="0 0 24 24" fill="none"
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none"
                                             stroke="#8a8a8a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                                             class="icon icon-tabler icons-tabler-outline icon-tabler-user">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -109,7 +109,7 @@
                         <div class="border my-10 border-1 border-color w-100"></div>
 
                         <li>
-                            <form class="w-100" data-form-logout>
+                            <form action="{{ route("auth.logout") }}" method="POST" class="w-100">
                                 @csrf
 
                                 <button type="submit" class="navbar-link w-100 py-10 px-20 d-flex align-items-center gap-2 text-capitalize text-second-color label-small">
@@ -131,33 +131,3 @@
         @endif
     </div>
 </nav>
-
-@push("scripts")
-    <script>
-        document.querySelector("[data-form-logout]").addEventListener("submit", async (e) => {
-            e.preventDefault();
-
-            let formData = new FormData(e.target);
-
-            let response = await fetch("/logout", {
-                method: "POST",
-                headers: {
-                    "X-CSRF-TOKEN": document.querySelector("meta[name='csrf-token']").getAttribute("content"),
-                },
-                body: formData
-            });
-
-            let data = await response.json();
-
-            if (data.success === true) {
-                document.querySelector("[data-status]").innerHTML = `<div class="alert alert-danger m-0 ${ data.status } border-0 rounded-4 label-small max-w-500px w-full">${ data.message }</div>`;
-
-                setTimeout(() => {
-                    window.location.href = "{{ route('auth.login') }}";
-                }, 500);
-            } else {
-                document.querySelector("[data-status]").innerHTML = `<div class="alert alert-danger m-0 ${ data.status } border-0 rounded-4 label-small max-w-500px w-full">${ data.errors }</div>`;
-            };
-        });
-    </script>
-@endpush

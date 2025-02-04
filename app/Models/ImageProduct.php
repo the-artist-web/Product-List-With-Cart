@@ -13,6 +13,6 @@ class ImageProduct extends Model
 
     public function products()
     {
-        return $this->belongsToMany(Product::class, "mediator_product_image");
+        return $this->belongsToMany(Product::class, "mediator_product_images");
     }
 }

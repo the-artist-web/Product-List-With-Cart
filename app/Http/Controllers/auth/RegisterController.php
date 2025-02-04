@@ -18,27 +18,20 @@ class RegisterController extends Controller
 
     public function loginStore(Request $request)
     {
-        try {
-            $request->validate([
-                "name" => "required|string|min:2|max:100",
-                "email" => "required|email|unique:users,email",
-                "password" => "required|string|min:8|max:30|confirmed",
-            ]);
-    
-            $user = User::create([
-                "name" => $request->name,
-                "email" => $request->email,
-                "password" => Hash::make($request->password),
-            ]);
-    
-            Auth::guard("web")->login($user);
+        $request->validate([
+            "name" => "required|string|min:2|max:100",
+            "email" => "required|email|unique:users,email",
+            "password" => "required|string|min:8|max:30|confirmed",
+        ]);
 
-            return response()->json(["success" => true, "message" => "Active registration completed!"]);
-        } catch (ValidationException $e) {
-            return response()->json([
-                "success" => false,
-                "errors" => $e->errors()
-            ]);
-        };
+        $user = User::create([
+            "name" => $request->name,
+            "email" => $request->email,
+            "password" => Hash::make($request->password),
+        ]);
+
+        Auth::guard("web")->login($user);
+
+        return redirect()->route("index");
     }
 }

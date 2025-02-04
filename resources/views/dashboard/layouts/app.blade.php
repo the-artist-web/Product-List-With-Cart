@@ -15,6 +15,7 @@
                     </div>
                 </div>
                 @include("dashboard.partials.footer")
+                @include("dashboard.partials.errors")
             </div>
         </div>
         @include('dashboard.layouts.partials.scripts')

@@ -9,7 +9,7 @@
                 @yield("body")
             </article>
         </main>
-        @include("partials.status")
+        @include("partials.errors")
         @include("layouts.partials.scripts")
     </body>
 </html>

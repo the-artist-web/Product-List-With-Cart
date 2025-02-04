@@ -62,7 +62,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route("create.product") }}">
+                    <a class="nav-link" href="{{ route("product.create") }}">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                             <!-- Download SVG icon from http://tabler.io/icons/icon/home -->
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -86,7 +86,7 @@
                 <hr class="text-success my-2">
 
                 <li class="nav-item">
-                    <form data-form-logout>
+                    <form action="{{ route('auth.admin.logout') }}" method="POST">
                         @csrf
 
                         <button type="submit" class="nav-link">
@@ -97,8 +97,7 @@
                                     stroke-linecap="round" stroke-linejoin="round"
                                     class="icon icon-tabler icons-tabler-outline icon-tabler-logout">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <path
-                                        d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+                                    <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
                                     <path d="M9 12h12l-3 -3" />
                                     <path d="M18 15l3 -3" />
                                 </svg>
@@ -114,29 +113,3 @@
         </div>
     </div>
 </aside>
-
-@push("scripts_dashboard")
-    <script>
-        document.querySelector("[data-form-logout]").addEventListener("submit", async (e) => {
-            e.preventDefault();
-
-            let formData = new FormData(e.target);
-
-            let response = await fetch("{{ route('auth.admin.logout') }}", {
-                method: "POST",
-                headers: {
-                    "X-CSRF-TOKEN": document.querySelector("meta[name='csrf-token']").getAttribute("content"),
-                },
-                body: formData
-            });
-
-            let data = await response.json();
-
-            if (data.success === true) {
-                window.location.href = "{{ route('auth.admin.login') }}";
-            } else {
-                window.location.back();
-            };
-        });
-    </script>
-@endpush
