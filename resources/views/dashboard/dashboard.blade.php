@@ -168,7 +168,7 @@
                                     </div>
                                 </td>
 
-                                <td>{{ $product->content }}</td>
+                                <td class="text-truncate" style="max-width: 100px;">{{ $product->content }}</td>
 
                                 <td>
                                     {{ "$" . $product->price }}

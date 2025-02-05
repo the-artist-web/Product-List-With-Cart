@@ -18,6 +18,6 @@ class Order extends Model
 
     public function products()
     {
-        return $this->belongsToMany(Product::class, "mediator_product_orders")->withPivot("count", "total");
+        return $this->belongsToMany(Product::class, "mediator_product_orders")->withPivot("count", "total" , "product_id");
     }
 }

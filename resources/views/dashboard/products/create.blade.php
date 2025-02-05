@@ -13,7 +13,7 @@
 
             <div class="mb-3">
                 <div class="form-label">Upload product images</div>
-                <input type="file" name="images" class="form-control" multiple>
+                <input type="file" name="images[]" class="form-control" multiple>
             </div>
 
             <div class="mb-3">

@@ -20,8 +20,6 @@ use App\Http\Controllers\pages\CheckoutController;
 use App\Http\Controllers\pages\ProfileController;
 use App\Http\Controllers\pages\SettingsController;
 use App\Http\Controllers\pages\ShoppingCardController;
-// ORDERS
-use App\Http\Controllers\OrdersController;
 // DASHBOARD
 use App\Http\Controllers\dashboard\DashboardController;
 use App\Http\Controllers\dashboard\AdminController;
@@ -86,14 +84,6 @@ Route::middleware([NotBackMiddleware::class])->group(function () {
     // CHECKOUT
     Route::get("/checkout", [CheckoutController::class, "checkout"])->name("page.checkout");
 });
-
-/*************************************************************************
- * ORDERS
- *************************************************************************
- */
-
-Route::post("/store/order/{id}", [OrdersController::class, "orderStore"])->name("order.store");
-Route::delete("/destroy/order/{id}", [OrdersController::class, "orderDestroy"])->name("order.destroy");
 
 /*************************************************************************
  * DASHBOARD

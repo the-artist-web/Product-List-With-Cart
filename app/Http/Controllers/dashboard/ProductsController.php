@@ -46,11 +46,7 @@ class ProductsController extends Controller
         $mainImagePath = $request->file('main_image')->store('main_image', 'public');
 
         $imagePaths = [];
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $image) {
-                $imagePaths[] = $image->store('images', 'public');
-            };
-        };
+        if ($request->hasFile('images')) foreach ($request->file('images') as $image) $imagePaths[] = $image->store('images', 'public');
     
         $imageRecord = ImageProduct::create([
             'main_image' => $mainImagePath,
