@@ -11,7 +11,7 @@ class Product extends Model
         "content",
         "price",
         "off",
-        "stock",
+        "quantity",
         "admin_id"
     ];
 
@@ -20,13 +20,23 @@ class Product extends Model
         return $this->belongsTo(Admin::class);
     }
 
+    public function users()
+    {
+        return $this->belongsToMany(User::class, "carts")->withPivot("quantity", "product_id", "user_id");
+    }
+
     public function orders()
     {
-        return $this->belongsToMany(Order::class, "mediator_product_orders")->withPivot("count", "total" , "product_id");
+        return $this->belongsToMany(Order::class, "order_item")->withPivot("total", "quantity" , "product_id", "order_id");
     }
 
     public function imageProducts()
     {
         return $this->belongsToMany(ImageProduct::class, "mediator_product_images");
+    }
+
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
     }
 }

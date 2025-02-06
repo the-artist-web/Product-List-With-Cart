@@ -34,7 +34,6 @@
                         class="form-control rounded-start-0 ps-0"
                     />
                 </div>
-                <div class="form-text text-error-color" data-error data-error-email></div>
             </div>
 
             <div class="mb-24">
@@ -50,7 +49,6 @@
                         class="form-control rounded-start-0 ps-0"
                     />
                 </div>
-                <div class="form-text text-error-color" data-error data-error-password></div>
             </div>
 
             <button type="submit" class="btn btn-primary text-uppercase mb-24 w-100">

@@ -32,13 +32,8 @@
             </div>
 
             <div class="mb-3">
-                <label class="form-label">Off</label>
-                <input type="number" class="form-control" name="off" placeholder="Enter Your Off">
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">Stock</label>
-                <input type="number" class="form-control" name="stock" placeholder="Enter Your Stock">
+                <label class="form-label">Quantity</label>
+                <input type="number" class="form-control" name="quantity" placeholder="Enter Your Quantity">
             </div>
 
             <button type="submit" class="btn btn-success">Add Product</button>

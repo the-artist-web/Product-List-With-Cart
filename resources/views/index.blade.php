@@ -9,8 +9,8 @@
 
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-3">
                 @foreach ($products as $product)
-                    <div class="col">
-                        <div class="card card-primary">
+                    <div class="col" data-aos="fade-up" data-aos-duration="2000">
+                        <div class="card card-primary position-relative">
                             <div class="position-relative mb-30">
                                 <a href="{{ route("page.product.details", ["id" => $product->id]) }}">
                                     <img 
@@ -38,10 +38,9 @@
                 
                                 <div class="d-flex align-items-center gap-2 text-orange-color label-small">
                                     ${{ $product->price }}
-                                    @if ($product->off)
-                                        <span class="text-decoration-line-through text-second-color">${{ $product->off }}</span>
-                                    @endif
                                 </div>
+
+                                <span class="position-absolute px-10 py-5 bg-orange-color text-bg-color rounded-pill label-small" style="top: 5px; left: 5px;">Quantity {{ $product->quantity }}</span>
                             </div>
                         </div>
                     </div>

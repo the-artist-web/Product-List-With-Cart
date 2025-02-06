@@ -29,17 +29,15 @@ class ProductsController extends Controller
             "images.*" => "required|image|mimes:jpeg,png,jpg,gif|max:5120",
             "title" => "required|string|min:2|max:255",
             "content" => "required|string|min:2|max:1000",
-            "price" => "required|integer",
-            "off" => "nullable|integer",
-            "stock" => "required|integer"
+            "price" => "required|numeric|min:0",
+            "quantity" => "required|integer"
         ]);
 
         $product = Product::create([
             "title" => $request->title,
             "content" => $request->content,
             "price" => $request->price,
-            "off" => $request->off ?? $request->off,
-            "stock" => $request->stock,
+            "quantity" => $request->quantity,
             "admin_id" => Auth::guard("admin")->user()->id,
         ]);
 
@@ -78,9 +76,8 @@ class ProductsController extends Controller
             "images.*" => "nullable|image|mimes:jpeg,png,jpg,gif|max:5120",
             "title" => "required|string|min:2|max:255",
             "content" => "required|string|min:2|max:1000",
-            "price" => "required|integer",
-            "off" => "nullable|integer",
-            "stock" => "required|integer"
+            "price" => "required|numeric|min:0",
+            "quantity" => "required|integer"
         ]);
 
         $product = Product::findOrFail($id);
@@ -89,8 +86,7 @@ class ProductsController extends Controller
             "title" => $request->title,
             "content" => $request->content,
             "price" => $request->price,
-            "off" => $request->off ?? $request->off,
-            "stock" => $request->stock
+            "quantity" => $request->quantity
         ]);
 
         if ($request->hasFile("main_image")) {

@@ -140,6 +140,7 @@
                             <th>Product</th>
                             <th>Content</th>
                             <th>Price</th>
+                            <th>Quantity</th>
                             <th>Time</th>
                             <th class="w-1"></th>
                         </tr>
@@ -172,8 +173,9 @@
 
                                 <td>
                                     {{ "$" . $product->price }}
-                                    <span class="text-decoration-line-through text-danger">{{ "$" . $product->off }}</span>
                                 </td>
+
+                                <td>{{ $product->quantity . " Quantity" }}</td>
 
                                 <td>{{ $product->created_at->format('F j, Y') }}</td>
 

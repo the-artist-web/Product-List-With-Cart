@@ -11,15 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('mediator_product_orders', function (Blueprint $table) {
+        Schema::create('order_items', function (Blueprint $table) {
             $table->id();
-            $table->integer("count")->default(0);
-            $table->decimal("total", 10, 2)->default(0);
-            $table->unsignedBigInteger("order_id");
+            $table->decimal("total", 10, 2);
+            $table->integer("quantity")->default(0);
             $table->unsignedBigInteger("product_id");
-            $table->foreign("order_id")->references("id")->on("orders")->onDelete("cascade");
+            $table->unsignedBigInteger("order_id");
             $table->foreign("product_id")->references("id")->on("products")->onDelete("cascade");
+            $table->foreign("order_id")->references("id")->on("orders")->onDelete("cascade");
             $table->timestamps();
+
+            $table->unique(["product_id", "order_id"]);
         });
     }
 
@@ -28,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('mediator_product_orders');
+        Schema::dropIfExists('order_items');
     }
 };

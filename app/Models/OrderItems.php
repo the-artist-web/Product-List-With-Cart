@@ -4,24 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Order extends Model
+class OrderItems extends Model
 {
     protected $fillable = [
-        "first_name",
-        "last_name",
-        "email",
-        "address",
-        "phone",
-        "other_notes",
-        "quantity",
         "total",
-        "status",
-        "user_id"
+        "quantity",
+        "product_id",
+        "order_id"
     ];
 
-    public function user()
+    public function orders()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsToMany(Order::class, "order_item")->withPivot("total", "quantity" , "product_id", "order_id");
     }
 
     public function products()

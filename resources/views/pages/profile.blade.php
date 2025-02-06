@@ -56,26 +56,16 @@
                 <table class="table m-0">
                     <thead>
                         <tr>
-                            <th class="text-uppercase w-4 label-medium"></th>
                             <th class="text-uppercase label-medium" scope="col">Product</th>
-                            <th class="text-uppercase label-medium" scope="col">Price</th>
+                            <th class="text-uppercase label-medium" scope="col">Status</th>
                             <th class="text-uppercase label-medium" scope="col">Quantity</th>
+                            <th class="text-uppercase label-medium" scope="col">Price</th>
                             <th class="text-uppercase w-4 label-medium" scope="col">Subtotal</th>
                         </tr>
                     </thead>
     
                     <tbody>
                         <tr>
-                            <td scope="row">
-                                <form data-delete-order>
-                                    @csrf
-        
-                                    <button class="btn btn-primary w-44px h-44px p-0 mx-auto">
-                                        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-x"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
-                                    </button>
-                                </form>
-                            </td>
-
                             <td>
                                 <div class="d-flex flex-nowrap align-items-center gap-3">
                                     <img 
@@ -90,68 +80,15 @@
                             </td>
 
                             <td>
-                                <h4 class="text-second-color fw-normal title-small">$387</h4>
+                                <h4 class="text-capitalize fw-normal title-small">shipped</h4>
                             </td>
 
                             <td>
-                                <div class="w-165px d-flex align-items-center gap-0 h-50px rounded-3">
-                                    <button class="btn p-0 d-flex align-items-center justify-content-center w-50px h-50px bg-third-bg-color border border-2 border-color rounded-pill">
-                                        <svg  xmlns="http://www.w3.org/2000/svg"  width="25.5"  height="25.5"  viewBox="0 0 24 24"  fill="none"  stroke="#eb9a99"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-minus"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l14 0" /></svg>
-                                    </button>
-                                    
-                                    <span class="p-0 w-50px d-flex align-items-center justify-content-center label-medium">1</span>
-                                    
-                                    <button class="btn p-0 d-flex align-items-center justify-content-center w-50px h-50px bg-third-bg-color border border-2 border-color rounded-pill">
-                                        <svg  xmlns="http://www.w3.org/2000/svg"  width="25.5"  height="25.5"  viewBox="0 0 24 24"  fill="none"  stroke="#eb9a99"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-plus"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg>
-                                    </button>
-                                </div>
-                            </td>
-
-                            <td>
-                                <h4 class="text-second-color fw-normal title-small">$774.00</h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td scope="row">
-                                <form data-delete-order>
-                                    @csrf
-        
-                                    <button class="btn btn-primary w-44px h-44px p-0 mx-auto">
-                                        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-x"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
-                                    </button>
-                                </form>
-                            </td>
-
-                            <td>
-                                <div class="d-flex flex-nowrap align-items-center gap-3">
-                                    <img 
-                                        src="{{ asset("/src/assets/images/image-baklava-desktop.jpg") }}" 
-                                        alt="" 
-                                        loading="lazy"
-                                        class="rounded-3 w-70px h-70px img-cover"
-                                    />
-
-                                    <h3 class="text-capitalize text-nowrap title-small">order name</h3>
-                                </div>
+                                <h4 class="text-second-color fw-normal title-small">1 Quantity</h4>
                             </td>
 
                             <td>
                                 <h4 class="text-second-color fw-normal title-small">$387</h4>
-                            </td>
-
-                            <td>
-                                <div class="w-165px d-flex align-items-center gap-0 h-50px rounded-3">
-                                    <button class="btn p-0 d-flex align-items-center justify-content-center w-50px h-50px bg-third-bg-color border border-2 border-color rounded-pill">
-                                        <svg  xmlns="http://www.w3.org/2000/svg"  width="25.5"  height="25.5"  viewBox="0 0 24 24"  fill="none"  stroke="#eb9a99"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-minus"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l14 0" /></svg>
-                                    </button>
-                                    
-                                    <span class="p-0 w-50px d-flex align-items-center justify-content-center label-medium">1</span>
-                                    
-                                    <button class="btn p-0 d-flex align-items-center justify-content-center w-50px h-50px bg-third-bg-color border border-2 border-color rounded-pill">
-                                        <svg  xmlns="http://www.w3.org/2000/svg"  width="25.5"  height="25.5"  viewBox="0 0 24 24"  fill="none"  stroke="#eb9a99"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-plus"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg>
-                                    </button>
-                                </div>
                             </td>
 
                             <td>

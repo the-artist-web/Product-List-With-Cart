@@ -16,8 +16,7 @@ return new class extends Migration
             $table->string("title");
             $table->text("content");
             $table->decimal("price", 10, 2);
-            $table->decimal("off", 10, 2)->default(0);
-            $table->integer("stock")->default(0);
+            $table->integer("quantity")->default(0);
             $table->unsignedBigInteger("admin_id");
             $table->foreign("admin_id")->references("id")->on("admins")->onDelete("cascade");
             $table->timestamps();

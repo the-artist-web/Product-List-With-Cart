@@ -199,8 +199,6 @@ p {
 .container {
     padding-inline: 16px !important;
     margin-inline: auto;
-    max-width: 1200px;
-    width: 100%;
 }
 
 .img-cover {

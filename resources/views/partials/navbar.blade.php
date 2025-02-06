@@ -1,5 +1,5 @@
 <nav class="navbar position-fixed top-0 left-0 right-0 z-3 bg-bg-color w-100 h-65px">
-    <div class="container-xxl d-flex align-items-center justify-content-between gap-3">
+    <div class="container d-flex align-items-center justify-content-between gap-3">
         <a href="{{ route("index") }}" class="d-flex align-items-center gap-1 title-small">
             <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="none"
                 stroke="#eb9a99" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -91,7 +91,7 @@
                         </li>
 
                         <li>
-                            <a href="{{ route("page.shopping.card") }}" class="navbar-link py-10 px-20 d-flex align-items-center gap-2 text-capitalize text-second-color label-small">
+                            <a href="{{ route("page.shopping.cart") }}" class="navbar-link py-10 px-20 d-flex align-items-center gap-2 text-capitalize text-second-color label-small">
                                 <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="#eb9a99"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-shopping-bag"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6.331 8h11.339a2 2 0 0 1 1.977 2.304l-1.255 8.152a3 3 0 0 1 -2.966 2.544h-6.852a3 3 0 0 1 -2.965 -2.544l-1.255 -8.152a2 2 0 0 1 1.977 -2.304z" /><path d="M9 11v-5a3 3 0 0 1 6 0v5" /></svg>
                             
                                 cart

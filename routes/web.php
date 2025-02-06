@@ -19,7 +19,7 @@ use App\Http\Controllers\pages\ProductDetailController;
 use App\Http\Controllers\pages\CheckoutController;
 use App\Http\Controllers\pages\ProfileController;
 use App\Http\Controllers\pages\SettingsController;
-use App\Http\Controllers\pages\ShoppingCardController;
+use App\Http\Controllers\pages\ShoppingCartController;
 // DASHBOARD
 use App\Http\Controllers\dashboard\DashboardController;
 use App\Http\Controllers\dashboard\AdminController;
@@ -42,7 +42,6 @@ Route::middleware([AuthCheckMiddleware::class])->group(function () {
     Route::get("/login", [LoginController::class, "viewLogin"])->name("auth.login");
     Route::post("/login", [LoginController::class, "loginStore"])->name("auth.login.post");
 });
-
 // AUTH USER LOGOUT
 Route::post("/logout", [LogoutController::class, "logout"])->name("auth.logout");
 
@@ -56,7 +55,6 @@ Route::middleware([AuthCheckAdminMiddleware::class])->group(function () {
         Route::post("/login", [LoginAdminController::class, "login"])->name("auth.admin.login.post");
     });
 });
-
 // AUTH ADMIN LOGOUT
 Route::post("/admin/logout", [LogoutAdminController::class, "logout"])->name("auth.admin.logout");
 
@@ -70,21 +68,23 @@ Route::get("/", [IndexController::class, "index"])->name("index");
 
 // PRODUCT DETAILS
 Route::get("/product/{id}", [ProductDetailController::class, "productDetail"])->name("page.product.details");
+Route::post("/add/cart/{id}", [ProductDetailController::class, "addToCart"])->name("add.to.cart");
+Route::delete("/destroy/cart/{id}", [ProductDetailController::class, "destroyCart"])->name("destroy.cart");
 
 Route::middleware([NotBackMiddleware::class])->group(function () {
     // PROFILE
     Route::get("/profile/{id}", [ProfileController::class, "profile"])->name("page.profile");
 
     // SHOPPING CARD
-    Route::get("/shopping-card", [ShoppingCardController::class, "shoppingCard"])->name("page.shopping.card");
+    Route::get("/shopping-cart", [ShoppingCartController::class, "shoppingCard"])->name("page.shopping.cart");
 
     // SETTINGS
     Route::get("/settings/{id}/edit", [SettingsController::class, "settings"])->name("page.settings");
 
     // CHECKOUT
     Route::get("/checkout", [CheckoutController::class, "checkout"])->name("page.checkout");
+    Route::post("/checkout/store", [CheckoutController::class, "checkoutStore"])->name("checkout.store");
 });
-
 /*************************************************************************
  * DASHBOARD
  *************************************************************************

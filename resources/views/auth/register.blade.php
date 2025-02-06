@@ -34,7 +34,6 @@
                         class="form-control rounded-start-0 ps-0"
                     />
                 </div>
-                <div class="form-text text-error-color" data-error data-error-name></div>
             </div>
 
             <div class="mb-15">
@@ -50,7 +49,6 @@
                         class="form-control rounded-start-0 ps-0"
                     />
                 </div>
-                <div class="form-text text-error-color" data-error data-error-email></div>
             </div>
 
             <div class="mb-15">
