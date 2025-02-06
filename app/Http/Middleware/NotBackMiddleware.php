@@ -16,7 +16,7 @@ class NotBackMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::guard("web")->check()) return redirect()->back();
+        if (!Auth::guard("web")->check()) return redirect()->route("auth.login");
 
         return $next($request);
     }

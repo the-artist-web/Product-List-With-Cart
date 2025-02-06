@@ -84,6 +84,9 @@ Route::middleware([NotBackMiddleware::class])->group(function () {
     // CHECKOUT
     Route::get("/checkout", [CheckoutController::class, "checkout"])->name("page.checkout");
     Route::post("/checkout/store", [CheckoutController::class, "checkoutStore"])->name("checkout.store");
+
+    // ORDER DETAIL
+    Route::get("/order-detail", [CheckoutController::class, "orderDetail"])->name("page.order.detail");
 });
 /*************************************************************************
  * DASHBOARD
