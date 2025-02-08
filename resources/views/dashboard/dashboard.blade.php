@@ -88,7 +88,7 @@
                                         <div class="img-holder position-relative bg-transparent border border-2 border-color d-flex align-items-center justify-content-center rounded-pill"
                                             style="width: 50px; height: 50px;">
                                             @if ($user->profile_photo)
-                                                <img src="{{ asset('storage/', $user->profile_photo) }}"
+                                                <img src="{{ asset('storage/' . $user->profile_photo) }}"
                                                     alt="{{ $user->name }}" loading="lazy"
                                                     class="img-cover position-absolute top-0 left-0 right-0 bottom-0 rounded-pill" />
                                             @else
