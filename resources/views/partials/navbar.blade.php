@@ -20,7 +20,7 @@
                     <button type="button" class="img-holder position-relative border border-2 border-color d-flex align-items-center justify-content-center h-45px max-h-45px w-45px max-w-45px rounded-pill" data-bs-toggle="dropdown">
                         @if (Auth::user()->profile_photo)
                             <img 
-                                src="" 
+                                src="{{ asset("storage/" . Auth::user()->profile_photo) }}" 
                                 alt="{{ Auth::user()->name }}"
                                 loading="lazy"
                                 class="img-cover position-absolute top-0 left-0 right-0 bottom-0 rounded-pill"
@@ -42,7 +42,7 @@
                                 <div class="img-holder position-relative bg-transparent border border-2 border-color d-flex align-items-center justify-content-center h-50px max-h-50px w-50px max-w-50px rounded-pill" style="min-width: 50px;">
                                     @if (Auth::user()->profile_photo)
                                         <img 
-                                            src="" 
+                                            src="{{ asset("storage/" . Auth::user()->profile_photo) }}" 
                                             alt="{{ Auth::user()->name }}"
                                             loading="lazy"
                                             class="img-cover position-absolute top-0 left-0 right-0 bottom-0 rounded-pill"

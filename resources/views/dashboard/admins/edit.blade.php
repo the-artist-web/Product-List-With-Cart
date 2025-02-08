@@ -39,7 +39,7 @@
                 </div>
 
                 @if (Auth::guard("admin")->user()->role === "super_admin")
-                    <div class="mb-3">
+                    <div class="mb-3 {{ $admin->id === Auth::guard("admin")->user()->id ? "d-none" : "" }}">
                         <div class="form-label">Role Admin</div>
                         <select name="role" class="form-select">
                             <option value="super_admin" {{ $admin->role === "super_admin" ? "selected" : "" }}>Super Admin</option>

@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderItems;
-use Illuminate\Database\Eloquent\HigherOrderBuilderProxy;
 use Illuminate\Support\Facades\Auth;
 
 class CheckoutController extends Controller
@@ -24,7 +23,7 @@ class CheckoutController extends Controller
         $request->validate([
             "first_name" => "required|string|min:2|max:200",
             "last_name" => "required|string|min:2|max:200",
-            "email" => "required|email|unique:orders,email",
+            "email" => "required|email",
             "address" => "required|string|min:2",
             "phone" => "required|string|min:2|max:200",
             "other_notes" => "nullable|string|min:2|max:1000"
@@ -58,6 +57,6 @@ class CheckoutController extends Controller
     
         Cart::where('user_id', Auth::id())->delete();
 
-        return redirect()->route("page.order.detail");
+        return redirect()->route("page.profile", ["id" => Auth::user()->id]);
     }
 }

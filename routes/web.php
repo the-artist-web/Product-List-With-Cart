@@ -24,6 +24,7 @@ use App\Http\Controllers\pages\ShoppingCartController;
 use App\Http\Controllers\dashboard\DashboardController;
 use App\Http\Controllers\dashboard\AdminController;
 use App\Http\Controllers\dashboard\ProductsController;
+use App\Http\Controllers\dashboard\OrdersController;
 
 /*************************************************************************
  * AUTH USER & ADMIN
@@ -80,14 +81,15 @@ Route::middleware([NotBackMiddleware::class])->group(function () {
 
     // SETTINGS
     Route::get("/settings/{id}/edit", [SettingsController::class, "settings"])->name("page.settings");
+    Route::put("/settings/update/profile/{id}", [SettingsController::class, "updateProfile"])->name("page.settings.update.profile");
+    Route::put("/settings/update/password/{id}", [SettingsController::class, "updatePassword"])->name("page.settings.update.password");
+    Route::delete("/settings/destroy/{id}", [SettingsController::class, "destroy"])->name("page.settings.destroy");
 
     // CHECKOUT
     Route::get("/checkout", [CheckoutController::class, "checkout"])->name("page.checkout");
     Route::post("/checkout/store", [CheckoutController::class, "checkoutStore"])->name("checkout.store");
-
-    // ORDER DETAIL
-    Route::get("/order-detail", [CheckoutController::class, "orderDetail"])->name("page.order.detail");
 });
+
 /*************************************************************************
  * DASHBOARD
  *************************************************************************
@@ -111,5 +113,10 @@ Route::prefix("/dashboard")->group(function () {
         Route::get("/product/{id}/edit", [ProductsController::class, "edit"])->name("product.edit");
         Route::put("/product/update/{id}", [ProductsController::class, "update"])->name("product.update");
         Route::delete("/product/destroy/{id}", [ProductsController::class, "destroy"])->name("product.destroy");
+
+        // ORDERS
+        Route::get("/order/{id}/edit", [OrdersController::class, "edit"])->name("order.edit");
+        Route::put("/order/update/{id}", [OrdersController::class, "update"])->name("order.update");
+        Route::delete("/order/destroy/{id}", [OrdersController::class, "destroy"])->name("order.destroy");
     });
 });

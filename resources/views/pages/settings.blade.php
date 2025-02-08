@@ -5,7 +5,10 @@
 @section("body")
     <div class="mb-20">
         <div class="container">
-            <form class="bg-second-bg-color rounded-4 p-30" enctype="multipart/form-data" data-form-update-prfile>
+            <form action="{{ route("page.settings.update.profile", ["id" => $user->id]) }}" method="POST" class="bg-second-bg-color rounded-4 p-30" enctype="multipart/form-data">
+                @csrf
+                @method("PUT")
+
                 <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-30">
                     <h2 class="title-small">Basic info</h2>
 
@@ -17,10 +20,10 @@
                 </div>
 
                 <label for="profile_photo" class="img-holder position-relative border border-2 border-color d-flex align-items-center justify-content-center h-160px max-h-160px w-160px max-w-160px rounded-pill mb-16" style="cursor: pointer;">
-                    @if (Auth::user()->profile_photo)
+                    @if ($user->profile_photo)
                         <img 
-                            src="" 
-                            alt="{{ Auth::user()->name }}"
+                            src="{{ asset("storage/" . $user->profile_photo) }}" 
+                            alt="{{ $user->name }}"
                             loading="lazy"
                             class="img-cover position-absolute top-0 left-0 right-0 bottom-0 rounded-pill"
                         />
@@ -53,10 +56,10 @@
                                 type="text"
                                 placeholder="Name"
                                 name="name"
+                                value="{{ $user->name }}"
                                 class="form-control rounded-start-0 ps-0"
                             />
                         </div>
-                        <div class="form-text text-error-color" data-error data-error-name></div>
                     </div>
 
                     <div class="col">
@@ -69,10 +72,10 @@
                                 type="text"
                                 placeholder="Username"
                                 name="username"
+                                value="{{ $user->username }}"
                                 class="form-control rounded-start-0 ps-0"
                             />
                         </div>
-                        <div class="form-text text-error-color" data-error data-error-username></div>
                     </div>
                 </div>
 
@@ -86,10 +89,10 @@
                             type="email"
                             placeholder="Email Address"
                             name="email"
+                            value="{{ $user->email }}"
                             class="form-control rounded-start-0 ps-0"
                         />
                     </div>
-                    <div class="form-text text-error-color" data-error data-error-email></div>
                 </div>
 
                 <div class="mb-16">
@@ -99,13 +102,13 @@
                         </span>
         
                         <input 
-                            type="email"
+                            type="text"
                             placeholder="Short Bio"
                             name="bio"
+                            value="{{ $user->bio }}"
                             class="form-control rounded-start-0 ps-0"
                         />
                     </div>
-                    <div class="form-text text-error-color" data-error data-error-bio></div>
                 </div>
             </form>
         </div>
@@ -113,7 +116,10 @@
 
     <div class="mb-20">
         <div class="container">
-            <form class="bg-second-bg-color rounded-4 p-30" data-form-update-password>
+            <form action="{{ route("page.settings.update.password", ["id" => $user->id]) }}" method="POST" class="bg-second-bg-color rounded-4 p-30">
+                @csrf
+                @method("PUT")
+
                 <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-30">
                     <h2 class="title-small">Change password</h2>
 
@@ -133,11 +139,10 @@
                         <input 
                             type="password"
                             placeholder="Old New"
-                            name="old_passowrd"
+                            name="old_password"
                             class="form-control rounded-start-0 ps-0"
                         />
                     </div>
-                    <div class="form-text text-error-color" data-error data-error-old-passowrd></div>
                 </div>
 
                 <div class="mb-16">
@@ -153,7 +158,6 @@
                             class="form-control rounded-start-0 ps-0"
                         />
                     </div>
-                    <div class="form-text text-error-color" data-error data-error-new-password></div>
                 </div>
 
                 <div class="mb-16">
@@ -169,7 +173,6 @@
                             class="form-control rounded-start-0 ps-0"
                         />
                     </div>
-                    <div class="form-text text-error-color" data-error data-error-password-confirmation></div>
                 </div>
             </form>
         </div>
@@ -177,15 +180,17 @@
 
     <div class="mb-20">
         <div class="container">
-            <form class="bg-second-bg-color rounded-4 p-30" data-form-delete-user>
+            <div class="bg-second-bg-color rounded-4 p-30">
                 <h2 class="mb-10 text-error-color title-medium">Delete acount</h2>
 
                 <p class="mb-16 text-second-color label-small">If you delete your account, you will never be able to recover it. All your data and information will be permanently lost. Please proceed with caution.</p>
 
-                <button type="submit" class="btn bg-error-color label-small">
+                <button type="button" class="btn bg-error-color label-small" data-bs-toggle="modal" data-bs-target="#pop-up">
                     delete your acount
                 </button>
-            </form>
+            </div>
         </div>
     </div>
+
+    @include("partials.pop-up")
 @endsection

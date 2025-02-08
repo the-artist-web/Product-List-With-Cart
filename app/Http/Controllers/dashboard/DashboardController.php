@@ -15,7 +15,7 @@ class DashboardController extends Controller
     {
         $admins = Admin::orderBy("created_at", "desc")->get();
         $users = User::orderBy("created_at", "desc")->get();
-        $orders = Order::orderBy("created_at", "desc")->get();
+        $orders = Order::with("products")->orderBy("created_at", "desc")->get();
         $products = Product::orderBy("created_at", "desc")->get();
     
         return view("dashboard.dashboard", compact("admins", "users", "orders", "products"));
