@@ -38,4 +38,4 @@
 </table>
 
 <h2>Demo Shots:</h2>
-<img src="/design/">
+<img src="/design/Screenshot 2025-02-08 151908.png">
