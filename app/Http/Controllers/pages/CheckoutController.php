@@ -21,15 +21,17 @@ class CheckoutController extends Controller
     public function checkoutStore(Request $request)
     {
         $request->validate([
-            "first_name" => "required|string|min:2|max:200",
-            "last_name" => "required|string|min:2|max:200",
-            "email" => "required|email",
-            "address" => "required|string|min:2",
-            "phone" => "required|string|min:2|max:200",
-            "other_notes" => "nullable|string|min:2|max:1000"
+            "first_name" => "required|string|min:2|max:200", 
+            "last_name" => "required|string|min:2|max:200", 
+            "email" => "required|email", 
+            "address" => "required|string|min:2", 
+            "phone" => "required|string|min:2|max:200", 
+            "other_notes" => "nullable|string|min:2|max:1000" 
         ]);
 
         $carts = Cart::with("product")->where("user_id", Auth::user()->id)->get();
+
+        foreach ($carts as $cart) if ($cart->quantity > $cart->product->quantity) return redirect()->back()->withErrors("This quantity does not exist");
 
         $order = Order::create([
             "first_name" => $request->first_name,

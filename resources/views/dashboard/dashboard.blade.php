@@ -213,7 +213,9 @@
 
     <div>
         @if ($orders->isEmpty())
-            <div class="card-body">There are no orders yet.</div>
+            <div class="card">
+                <div class="card-body">There are no orders yet.</div>
+            </div>
         @else
             <div class="row row-cols-1 row-cols-lg-2 g-3">
                 @foreach ($orders as $order)

@@ -26,6 +26,8 @@ class ProductDetailController extends Controller
         $product = Product::findOrFail($id);
     
         $quantity = $request->quantity ?? 1;
+
+        if ($request->quantity > $product->quantity) return redirect()->back()->withErrors("This quantity does not exist");
     
         $cartItem = Cart::where("user_id", Auth::user()->id)->where("product_id", $product->id)->first();
     
