@@ -76,7 +76,6 @@
                             <th>Email</th>
                             <th>Short Bio</th>
                             <th>Time</th>
-                            <th class="w-1"></th>
                         </tr>
                     </thead>
 
@@ -111,16 +110,7 @@
 
                                 <td class="text-nowrap">{{ $user->bio ?? '404 not found bio.' }}</td>
 
-                                <td class="text-nowrap">{{ $user->created_at->format('F j, Y') }}</td>
-
-                                <td>
-                                    <div class="btn-list flex-nowrap">
-                                        <a href="{{ route('page.profile', ['id' => $user->id]) }}" target="_blank"
-                                            class="btn btn-6 btn-outline-success">
-                                            View
-                                        </a>
-                                    </div>
-                                </td>
+                                <td class="text-nowrap">{{ $user->created_at->format('F j, Y') }}</td>=
                             </tr>
                         @endforeach
                     </tbody>
