@@ -4,7 +4,7 @@
 
 @section("body")
     <section class="section">
-        <div class="container-xxl">
+        <div class="container">
             <h2 class="title-section text-capitalize d-flex align-items-center gap-2 title-medium">product list</h2>
 
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-3">
