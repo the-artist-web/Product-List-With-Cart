@@ -86,7 +86,7 @@
                 <hr class="text-success my-2">
 
                 <li class="nav-item">
-                    <form action="{{ route('auth.admin.logout') }}" method="POST">
+                    <form action="{{ route('auth.logout') }}" method="POST">
                         @csrf
 
                         <button type="submit" class="nav-link">

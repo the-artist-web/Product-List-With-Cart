@@ -49,15 +49,15 @@ Route::post("/logout", [LogoutController::class, "logout"])->name("auth.logout")
 /**
  * ADMIN
  */
-Route::middleware([AuthCheckAdminMiddleware::class])->group(function () {
-    Route::prefix("/dashboard")->group(function () {
+Route::prefix("/dashboard")->group(function () {
+    Route::middleware([AuthCheckAdminMiddleware::class])->group(function () {
         // AUTH ADMIN LOGIN
         Route::get("/login", [LoginAdminController::class, "viewLogin"])->name("auth.admin.login");
         Route::post("/login", [LoginAdminController::class, "login"])->name("auth.admin.login.post");
     });
+    // AUTH ADMIN LOGOUT
+    Route::post("/logout", [LogoutAdminController::class, "logout"])->name("auth.logout");
 });
-// AUTH ADMIN LOGOUT
-Route::post("/admin/logout", [LogoutAdminController::class, "logout"])->name("auth.admin.logout");
 
 /*************************************************************************
  * WEB
